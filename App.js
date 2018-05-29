@@ -14,18 +14,18 @@ import {
 import { StackNavigator } from 'react-navigation';
 
 import ContactMessageScreen from './src/components/ContactMessageScreen.js';
-import Contact from './src/components/Contact.js';
+import ContactList from './src/components/ContactList.js';
 import AppToolbar from './src/components/AppToolbar.js';
 
 const RootStack = StackNavigator(
   {
     Home: {
-      screen: Contact,
+      screen: ContactList,
     },
     ContactMessageScreen: {
       screen: ContactMessageScreen,
     },
-    
+
   },
   {
     initialRouteName: 'Home',

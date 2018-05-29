@@ -6,7 +6,7 @@ import {
   ToolbarBackAction
 } from 'react-native-paper';
 import { Image } from 'react-native';
-import { MaterialIcon } from 'react-native-vector-icons';
+
 
 export default class AppToolbar extends Component {
   render() {
@@ -15,7 +15,7 @@ export default class AppToolbar extends Component {
       image } = this.props
 
       return(
-        <Toolbar>
+        <Toolbar style = { { backgroundColor:'#bc12a6' } } >
           <ToolbarBackAction
             //icon = "arrow-back"
             onPress = { () => { this.props.navigation('Home') } }

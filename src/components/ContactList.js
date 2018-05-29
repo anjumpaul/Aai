@@ -8,8 +8,11 @@ import {
   Image
 } from 'react-native';
 import Contacts from 'react-native-contacts';
+
 import AppToolbar from './AppToolbar.js';
-export default class Contact extends Component {
+import MessageCard from './MessageCard.js';
+
+export default class ContactList extends Component {
 
   static navigationOptions = (props) =>({
     header:null
@@ -20,12 +23,15 @@ export default class Contact extends Component {
     this.state={
 
       contacts:[],
-      image:'https:placeimg.com/130/134/people'
+      messages:[],
+      incomingMessage:true,
+      outgoingMessage:true,
     }
   }
-
+ // incomingMessage=()=>{
+ //   <MessageCard receiver={ this.props.navigation.state.params.title } sender = 'Anne'/>
+ // }
   displayContacts = () => {
-
     let contact;
     Contacts.getAll( (err, contacts) => {
       if (err) {
@@ -36,7 +42,7 @@ export default class Contact extends Component {
       // this.setState({
       //   givenName:givenName,
       //   number:number
-      // console.log(contacts)
+       //console.log(contacts)
       contact = contacts;
       this.setState({
         contacts:contact
@@ -68,6 +74,14 @@ export default class Contact extends Component {
     //     </View>
     //   )
     // })
+
+    // const messages = getMessage = () =>{
+    //   incomingMessage?
+    //   this.setState({messages:incomingMessage()})
+    //   :
+    //   null
+    // }
+  //  console.log(messages);
     const listContactsName = <FlatList
       data =  {this.state.contacts}
       renderItem = { ( { item } ) => (
@@ -75,7 +89,12 @@ export default class Contact extends Component {
         <TouchableOpacity style = { styles.contacts }
           onPress={() =>
             {
-              this.props.navigation.navigate('ContactMessageScreen',{title:item.givenName,image:'https:placeimg.com/130/134/people'})
+              this.props.navigation.navigate('ContactMessageScreen',
+              {
+                title:item.givenName,
+                image:'https:placeimg.com/130/134/people',
+                //messages:this.state.messages
+              })
             }
           }
           >
@@ -94,7 +113,6 @@ export default class Contact extends Component {
       return(
         listContactsName
       )
-
     }
     render() {
       //const { navigate } = this.props.navigation;
