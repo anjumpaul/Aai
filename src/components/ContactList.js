@@ -23,16 +23,49 @@ export default class ContactList extends Component {
     this.state={
 
       contacts:[],
-      messages:[],
-      incomingMessage:true,
-      outgoingMessage:true,
+
+      messages:{
+        1472369851:{
+          incoming:true,
+          outgoing:false
+        },
+        1234567890:{
+          incoming:false,
+          outgoing:true
+        },
+        1235896473:{
+          incoming:true,
+          outgoing:true
+        },
+        1233214560:{
+          incoming:false,
+          outgoing:false
+        },
+        1528079638:{
+          incoming:true,
+          outgoing:false
+        }
+      }
+
+        // phoneNumbers:[
+        //   {
+        //   number:'',
+        //   //key:this.state.number,
+        //   incomingMessage:null,
+        //   outgoingMessage:null,
+        // }
+        // ]
+
     }
   }
+
+
  // incomingMessage=()=>{
  //   <MessageCard receiver={ this.props.navigation.state.params.title } sender = 'Anne'/>
  // }
+
   displayContacts = () => {
-    let contact;
+    let contact,phoneNumber;
     Contacts.getAll( (err, contacts) => {
       if (err) {
         throw err;
@@ -43,13 +76,26 @@ export default class ContactList extends Component {
       //   givenName:givenName,
       //   number:number
        //console.log(contacts)
+
+       // phoneNumber = this.state.contacts.map( ( item ) => {
+       //
+       // { item.phoneNumbers.map( ( item ) => {
+       //   return(
+       //     <Text> { item.number } </Text>
+       //   )
+       // })}
+       // })
+
       contact = contacts;
       this.setState({
-        contacts:contact
+        contacts:contact,
+        //number:phoneNumber
       })
+      console.log(contacts[0]);
     })
 
-    //console.log(contact);
+
+    //console.log(phoneNumber);
     // return(
     //   <Text>{this.state.givenName} {this.state.number}</Text>
     // )
@@ -84,8 +130,8 @@ export default class ContactList extends Component {
   //  console.log(messages);
     const listContactsName = <FlatList
       data =  {this.state.contacts}
-      renderItem = { ( { item } ) => (
-
+      renderItem = { ( { item } ) => {
+         return(
         <TouchableOpacity style = { styles.contacts }
           onPress={() =>
             {
@@ -93,7 +139,6 @@ export default class ContactList extends Component {
               {
                 title:item.givenName,
                 image:'https:placeimg.com/130/134/people',
-                //messages:this.state.messages
               })
             }
           }
@@ -107,7 +152,7 @@ export default class ContactList extends Component {
             </Text>
           </TouchableOpacity>
 
-        )}
+        )}}
       />
 
       return(

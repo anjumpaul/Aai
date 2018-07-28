@@ -22,7 +22,10 @@ export default class ContactMessageScreen extends Component {
   })
   constructor(){
     super()
-    incomingMessage:true
+    this.state={
+      incoming:true,
+      outgoing:true
+    }
   }
   // sendMessage = () => {
   //
@@ -30,10 +33,14 @@ export default class ContactMessageScreen extends Component {
   //  return messages;
   // }
   render() {
-
+    alert(   this.props.navigation.state.params.messages  )
     return(
       <View style = { styles.container } >
-
+        {/* {
+        this.state.incoming?
+            <MessageCard receiver={ this.props.navigation.state.params.title } sender = 'Anne'/>
+          :null
+        } */}
         <Text style = { styles.text } >
           { this.props.navigation.state.params.title }  might be needing some care
         </Text>
@@ -43,6 +50,7 @@ export default class ContactMessageScreen extends Component {
           >
             Send some  <Icon name = "favorite"/>  to  { this.props.navigation.state.params.title }
           </Button>
+
         </View>
       );
     }
